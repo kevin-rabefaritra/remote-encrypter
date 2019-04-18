@@ -1,5 +1,7 @@
 # Android Remote Encrypter (ARE)
 
+![Release](https://jitpack.io/v/kevin-rabefaritra/remote-encrypter.svg)
+
 ### What is ARE?
 Android Remote Encrypter (ARE) is an Android application asymmetric encryption module on remote data read access. ARE constitutes an additional layer to the Android [ContentProvider][cp1].
 Compared to existing database encryption modules, ARE is:
@@ -26,7 +28,7 @@ allprojects {
 **Add the dependencies to your gradle file (app gradle):**
 ```javascript
 dependencies {
-	implementation 'com.github.kevin-rabefaritra:remote-encrypter:1.0.1'
+	implementation 'com.github.kevin-rabefaritra:remote-encrypter:1.0.2'
 }
 ```
 

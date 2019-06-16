@@ -80,8 +80,7 @@ public class CursorServices
 	public static Cursor decrypt(@NonNull Cursor cursor, @NonNull String privateKey, String[] columns, int[] columnTypes, String algorithm) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException
 	{
 		MatrixCursor matrixCursor = new MatrixCursor(cursor.getColumnNames());
-		cursor.moveToNext();
-		do
+		while(cursor.moveToNext())
 		{
 			Object[] values = new Object[cursor.getColumnCount()];
 			for (int i = 0; i < values.length; i++)
@@ -107,12 +106,10 @@ public class CursorServices
 					default:
 						break;
 				}
-				matrixCursor.addRow(values);
 			}
+			matrixCursor.addRow(values);
 		}
-		while(cursor.moveToNext());
-
-		matrixCursor.moveToFirst();
+		matrixCursor.moveToPosition(-1);
 		return matrixCursor;
 	}
 }

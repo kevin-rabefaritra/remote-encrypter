@@ -33,7 +33,7 @@ public class CursorServices
 	public static Cursor encrypt(@NonNull Cursor cursor, @Nullable String publicKey, String[] columns, String algorithm) throws BadPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException
 	{
 		MatrixCursor matrixCursor = new MatrixCursor(cursor.getColumnNames(), cursor.getCount());
-		while(cursor.moveToNext())
+		do
 		{
 			Object[] values = new Object[cursor.getColumnCount()];
 			for(int i = 0; i < values.length; i++)
@@ -62,6 +62,8 @@ public class CursorServices
 			}
 			matrixCursor.addRow(values);
 		}
+		while (cursor.moveToNext());
+
 		matrixCursor.moveToFirst();
 		return matrixCursor;
 	}
@@ -77,7 +79,7 @@ public class CursorServices
 	public static Cursor decrypt(@NonNull Cursor cursor, @NonNull String privateKey, String[] columns, int[] columnTypes, String algorithm) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException
 	{
 		MatrixCursor matrixCursor = new MatrixCursor(cursor.getColumnNames());
-		while(cursor.moveToNext())
+		do
 		{
 			Object[] values = new Object[cursor.getColumnCount()];
 			for (int i = 0; i < values.length; i++)
@@ -106,6 +108,8 @@ public class CursorServices
 				matrixCursor.addRow(values);
 			}
 		}
+		while(cursor.moveToNext());
+
 		matrixCursor.moveToFirst();
 		return matrixCursor;
 	}

@@ -2,15 +2,15 @@
 
 ![Release](https://jitpack.io/v/kevin-rabefaritra/remote-encrypter.svg)
 
-### What is ARE?
+### What is Android Remote Encrypter?
 Android Remote Encrypter (ARE) is an Android application asymmetric encryption module on remote data read access. ARE constitutes an additional layer to the Android [ContentProvider][cp1].
-Compared to existing database encryption modules, ARE is:
-1) More flexible: encryption can be applied to specific columns
+Compared to existing databases encryption modules, ARE is:
+1) More flexible: encryption can be applied to specific table columns
 2) On-demand: encryption is applied when the ContentProvider query() method is being called
-3) Light: Since the data is only encrypted through the ContentProvider, no decryption is needed for internal database reading.
+3) Lightweight: since the data is only encrypted through the ContentProvider, no decryption is needed for an internal database reading
 
-### How does ARE works?
-Assuming there are two applications A and B owned by different developers and B wants to access some data from application A's database. According to the Google Developers Guidelines, [creating a content provider][cp2] is suggested to do so, however the problem is malicious access by untrusted applications since it's not possible to restrict the access to pre-defined applications only.
+### How does ARE work?
+Assuming there are two applications A and B owned by different developers. Application B wants to access some data from application A's database. According to the Google Developers Guidelines, creating a content provider is suggested as the [following][cp2]: create a subclass of the ContentProvider class, override base query methods and declare the implementation in the Android Manifest. However, since it's not possible to restrict the access to pre-defined applications only the problem is malicious access by untrusted applications.
 ARE works from a public-private generated keypair, data read through application A's ContentProvider are encrypted and decrypted by application B.
 
 ![Android RemoteEncrypter](img/remote-encrypter.png?raw=true "Android RemoteEncrypter representation")
